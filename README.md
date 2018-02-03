@@ -61,10 +61,10 @@ Register the package with laravel in `config/app.php` under `providers` with the
 ```
 
 ### Configuration
-Laravel PHP Info can be configured in directly in `/config/laravelPhpInfo.php` or in the variables in your `.env` file.
+Laravel PHP Info can be configured in directly in [`/config/laravelPhpInfo.php`](https://github.com/jeremykenedy/laravel-phpinfo/blob/master/src/config/laravelPhpInfo.php) file.
 
 ##### Config File
-Here is the `/config/laravelPhpInfo.php` configuration options:
+Here is the [`/config/laravelPhpInfo.php`](https://github.com/jeremykenedy/laravel-phpinfo/blob/master/src/config/laravelPhpInfo.php) configuration options:
 
 ```php
 /*
