@@ -7,7 +7,7 @@
 |
 */
 
-Route::group(['prefix' => 'phpinfo','as' => 'laravelPhpInfo::','namespace' => 'jeremykenedy\laravelPhpInfo\App\Http\Controllers'], function() {
+Route::group(['prefix' => 'phpinfo','as' => 'laravelPhpInfo::','namespace' => 'jeremykenedy\LaravelPhpInfo\App\Http\Controllers'], function() {
 
     Route::get('/', ['uses' => 'LaravelPhpInfoController@phpinfo'])->name('phpinfo');
 
