@@ -85,7 +85,7 @@ Here is the `/config/laravelPhpInfo.php` configuration options:
 ```
 
 ### Route
-* ```[/phpinfo](https://github.com/jeremykenedy/laravel-phpinfo/blob/master/src/resources/views/phpinfo/php-info.blade.php)```
+* `[phpinfo](https://github.com/jeremykenedy/laravel-phpinfo/blob/master/src/resources/views/phpinfo/php-info.blade.php)`
 
 ### Screenshot
 ![PHP Info page](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-phpinfo/phpinfo1.jpg)
