@@ -21,5 +21,5 @@ before_script:
   - cd laravelPhpInfo
   - composer self-update
   - composer install --prefer-source --no-interaction
-  #- composer require jeremykenedy/laravel-phpinfo
-  #- php artisan vendor:publish --tag=laravelPhpInfo
+  - composer require jeremykenedy/laravel-phpinfo
+  - php artisan vendor:publish --tag=laravelPhpInfo
