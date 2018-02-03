@@ -88,7 +88,7 @@ Here is the `/config/laravelPhpInfo.php` configuration options:
 * ```/phpinfo```
 
 ### Screenshot
-![PHP Info page]()
+![PHP Info page](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-phpinfo/phpinfo1.jpg)
 
 ### File Tree
 
