@@ -1,7 +1,7 @@
 # Laravel PHP Info
 
-[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravelPhpInfo/v/stable)](https://packagist.org/packages/jeremykenedy/laravelPhpInfo)
-[![Total Downloads](https://poser.pugx.org/jeremykenedy/laravelPhpInfo/downloads)](https://packagist.org/packages/jeremykenedy/laravelPhpInfo)
+[![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravel-phpinfo/v/stable)](https://packagist.org/packages/jeremykenedy/laravel-phpinfo)
+[![Total Downloads](https://poser.pugx.org/jeremykenedy/laravel-phpinfo/downloads)](https://packagist.org/packages/jeremykenedy/laravel-phpinfo)
 [![Travis-CI Build](https://travis-ci.org/jeremykenedy/laravel-phpinfo.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-phpinfo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
