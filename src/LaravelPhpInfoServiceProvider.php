@@ -1,6 +1,6 @@
 <?php
 
-namespace jeremykenedy\laravelPhpInfo;
+namespace jeremykenedy\LaravelPhpInfo;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
