@@ -17,13 +17,13 @@ Table of contents:
 - [License](#license)
 
 ### About
-Laravel PHP Indo is a package that provides a PHPInfo() page using blade templating. 
+Laravel PHP Info is a package that provides a [PHPInfo()](http://php.net/manual/en/function.phpinfo.php) page using blade templating. 
 
 The config file can be used to enable/disable auth protection and specify the roles middleware.
 
 | Laravel PHP Info |
 | :------------ |
-| Easily show PHPInfo() page with blade templates |
+| Easily show [PHPInfo()](http://php.net/manual/en/function.phpinfo.php) page with blade templates |
 | Can publish customizable views and assets |
 | Enable/Disable Auth middleware |
 | Specify additional middlewares | 
