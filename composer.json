@@ -1,6 +1,6 @@
 {
     "name": "jeremykenedy/laravel-phpinfo",
-    "description": "PhpInfo in a for Laravel in a blade template",
+    "description": "phpinfo() in a pretty Laravel blade template",
     "keywords": [
             "phpinfo",
             "Laravel php indo",
