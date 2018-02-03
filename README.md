@@ -92,6 +92,29 @@ Here is the `/config/laravelPhpInfo.php` configuration options:
 ### File Tree
 
 ```
+LaravelPhpInfo
+    ├── .gitignore
+    ├── .travis.yml
+    ├── LICENSE
+    ├── README.md
+    ├── composer.json
+    └── src
+        ├── app
+        │   └── Http
+        │       └── Controllers
+        │           └── LaravelPhpInfoController.php
+        ├── config
+        │   └── laravelPhpInfo.php
+        ├── laravelPhpInfoServiceProvider.php
+        ├── resources
+        │   ├── lang
+        │   │   └── en
+        │   │       └── laravel-phpinfo.php
+        │   └── views
+        │       └── phpinfo
+        │           └── php-info.blade.php
+        └── routes
+            └── web.php
 
 ```
 
