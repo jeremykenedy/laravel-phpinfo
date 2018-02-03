@@ -2,6 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravelPhpInfo/v/stable)](https://packagist.org/packages/jeremykenedy/laravelPhpInfo)
 [![Total Downloads](https://poser.pugx.org/jeremykenedy/laravelPhpInfo/downloads)](https://packagist.org/packages/jeremykenedy/laravelPhpInfo)
+[![Travis-CI Build](https://travis-ci.org/jeremykenedy/laravel-phpinfo.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-phpinfo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Table of contents:
