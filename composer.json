@@ -1,0 +1,35 @@
+{
+    "name": "jeremykenedy/laravel-phpinfo",
+    "description": "PhpInfo in a for Laravel in a blade template",
+    "keywords": [
+            "phpinfo",
+            "Laravel php indo",
+            "Laravel phpinfo"
+        ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeremy Kenedy",
+            "email": "jeremykenedy@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "jeremykenedy\\LaravelPhpInfo\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "jeremykenedy\\LaravelPhpInfo\\LaravelPhpInfoServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}

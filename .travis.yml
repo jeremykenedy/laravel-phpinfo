@@ -1,0 +1,31 @@
+language: php
+sudo: required
+dist: trusty
+group: edge
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - nightly
+
+sudo: false
+
+services:
+  - mysql
+
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install
+  - composer create-project --prefer-dist laravel/laravel laravelPhpInfo
+  - cd laravelPhpInfo
+  - composer self-update
+  - composer install --dev --prefer-source --no-interaction
+  - composer require jeremykenedy/laravel-phpinfo
+  - php artisan vendor:publish --tag=laravelPhpInfo
+
+before_install:
+  - travis_retry composer self-update
+
+install:
+  - travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
