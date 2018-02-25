@@ -17,7 +17,7 @@ Table of contents:
 - [License](#license)
 
 ### About
-Laravel PHP Info is a package that provides a [PHPInfo()](http://php.net/manual/en/function.phpinfo.php) page using blade templating. 
+Laravel PHP Info is a package that provides a [PHPInfo()](http://php.net/manual/en/function.phpinfo.php) page using blade templating.
 
 The config file can be used to enable/disable auth protection and specify the roles middleware.
 
@@ -26,12 +26,12 @@ The config file can be used to enable/disable auth protection and specify the ro
 | Easily show [PHPInfo()](http://php.net/manual/en/function.phpinfo.php) page with blade templates |
 | Can publish customizable views and assets |
 | Enable/Disable Auth middleware |
-| Specify additional middlewares | 
+| Specify additional middlewares |
 | [configuration](#configuration) options |
 | Uses Language [localization](https://laravel.com/docs/5.5/localization) files |
 
 ### Requirements
-* [Laravel 5.3, 5.4, or 5.5+](https://laravel.com/docs/installation)
+* [Laravel 5.3, 5.4, 5.5, or 5.6+](https://laravel.com/docs/installation)
 
 ### Installation Instructions
 1. From your projects root folder in terminal run:
@@ -84,6 +84,13 @@ Here is the [`/config/laravelPhpInfo.php`](https://github.com/jeremykenedy/larav
 
 // Optional Roles Middleware
 'rolesMiddlware'                => 'role:admin',
+
+'bootstapVersion'               => '4',
+
+// Additional Card classes for styling -
+// See: https://getbootstrap.com/docs/4.0/components/card/#background-and-color
+// Example classes: 'text-white bg-primary mb-3'
+'bootstrapCardClasses'          => '',
 ```
 
 ### Route

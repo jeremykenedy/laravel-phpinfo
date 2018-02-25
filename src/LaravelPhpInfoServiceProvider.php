@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelPhpInfoServiceProvider extends ServiceProvider
 {
-
     private $_packageTag = 'laravelPhpInfo';
 
     /**
@@ -60,7 +59,5 @@ class LaravelPhpInfoServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/resources/lang' => base_path('resources/lang/vendor/' . $this->_packageTag),
         ], $publishTag);
-
     }
-
 }
