@@ -3,7 +3,7 @@
     "description": "phpinfo() in a pretty Laravel blade template",
     "keywords": [
             "phpinfo",
-            "Laravel php indo",
+            "Laravel php info",
             "Laravel phpinfo"
         ],
     "license": "MIT",
