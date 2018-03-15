@@ -1,0 +1,90 @@
+$color1: #ffffff;
+$color2: #009;
+$color3: #ccc;
+$color4: #666;
+$color5: #ccf;
+$color6: #99c;
+$color7: #ddd;
+$color9: #999;
+
+.php-info {
+    pre {
+        margin: 0;
+        font-family: monospace;
+    }
+    a {
+        &:link {
+            color: $color2;
+            text-decoration: none;
+            background-color: $color1;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    table {
+        border-collapse: collapse;
+        border: 0;
+        width: 100%;
+        box-shadow: 1px 2px 3px $color3;
+    }
+    .center {
+        text-align: center;
+        table {
+            margin: 1em auto;
+            text-align: left;
+        }
+        th {
+            text-align: center !important;
+        }
+    }
+    td {
+        border: 1px solid $color4;
+        font-size: 75%;
+        vertical-align: baseline;
+        padding: 4px 5px;
+    }
+    th {
+        border: 1px solid $color4;
+        font-size: 75%;
+        vertical-align: baseline;
+        padding: 4px 5px;
+    }
+    h1 {
+        font-size: 150%;
+    }
+    h2 {
+        font-size: 125%;
+    }
+    .p {
+        text-align: left;
+    }
+    .e {
+        background-color: $color5;
+        width: 50px;
+        font-weight: bold;
+    }
+    .h {
+        background-color: $color6;
+        font-weight: bold;
+    }
+    .v {
+        background-color: $color7;
+        max-width: 50px;
+        overflow-x: auto;
+        word-wrap: break-word;
+        i {
+            color: $color9;
+        }
+    }
+    img {
+        float: right;
+        border: 0;
+    }
+    hr {
+        width: 100%;
+        background-color: $color3;
+        border: 0;
+        height: 1px;
+    }
+}

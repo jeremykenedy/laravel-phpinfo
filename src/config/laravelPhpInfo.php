@@ -27,4 +27,8 @@ return [
     // See: https://getbootstrap.com/docs/4.0/components/card/#background-and-color
     // Example classes: 'text-white bg-primary mb-3'
     'bootstrapCardClasses'          => '',
+
+    // Inline CSS
+    'usePHPinfoCSS'                 => true,
+
 ];
