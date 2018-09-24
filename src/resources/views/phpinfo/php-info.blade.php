@@ -1,7 +1,7 @@
 @extends(config('laravelPhpInfo.laravelPhpInfoBladeExtended'))
 
 @section('title')
-    @lang('laravelPhpInfo::laravel-phpinfo.title')
+    {!! trans('laravelPhpInfo::laravel-phpinfo.title') !!}
 @endsection
 
 @php
@@ -110,7 +110,7 @@
             <div class="col-md-12">
                 <div class="{{ $containerClass }} {{ $bootstrapCardClasses }}">
                     <div class="{{ $containerHeaderClass }}">
-                        @lang('laravelPhpInfo::laravel-phpinfo.title')
+                        {!! trans('laravelPhpInfo::laravel-phpinfo.title') !!}
                     </div>
                     <div class="{{ $containerBodyClass }}">
                         <div class="php-info">
