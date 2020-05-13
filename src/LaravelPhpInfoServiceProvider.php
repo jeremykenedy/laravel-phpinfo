@@ -33,9 +33,9 @@ class LaravelPhpInfoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
-        $this->loadViewsFrom(__DIR__ . '/resources/views/', $this->_packageTag);
-        $this->mergeConfigFrom(__DIR__ . '/config/' . $this->_packageTag . '.php', $this->_packageTag);
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/resources/views/', $this->_packageTag);
+        $this->mergeConfigFrom(__DIR__.'/config/'.$this->_packageTag.'.php', $this->_packageTag);
         $this->publishFiles();
     }
 
@@ -49,15 +49,15 @@ class LaravelPhpInfoServiceProvider extends ServiceProvider
         $publishTag = $this->_packageTag;
 
         $this->publishes([
-            __DIR__ . '/config/' . $this->_packageTag . '.php' => base_path('config/' . $this->_packageTag . '.php'),
+            __DIR__.'/config/'.$this->_packageTag.'.php' => base_path('config/'.$this->_packageTag.'.php'),
         ], $publishTag);
 
         $this->publishes([
-            __DIR__ . '/resources/views' => base_path('resources/views/vendor/' . $this->_packageTag),
+            __DIR__.'/resources/views' => base_path('resources/views/vendor/'.$this->_packageTag),
         ], $publishTag);
 
         $this->publishes([
-            __DIR__ . '/resources/lang' => base_path('resources/lang/vendor/' . $this->_packageTag),
+            __DIR__.'/resources/lang' => base_path('resources/lang/vendor/'.$this->_packageTag),
         ], $publishTag);
     }
 }
