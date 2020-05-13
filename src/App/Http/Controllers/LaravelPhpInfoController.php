@@ -3,7 +3,6 @@
 namespace jeremykenedy\laravelPhpInfo\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class LaravelPhpInfoController extends Controller
 {
