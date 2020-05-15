@@ -1,4 +1,7 @@
+![Laravel PHP Info](https://github-project-images.s3-us-west-2.amazonaws.com/logos/laravel-php-info-logo.png)
+
 # Laravel PHP Info
+Laravel PHP Info is a package that provides a [PHPInfo()](http://php.net/manual/en/function.phpinfo.php) page using blade templating. The config file can be used to enable/disable auth protection and specify the roles middleware.
 
 [![Latest Stable Version](https://poser.pugx.org/jeremykenedy/laravel-phpinfo/v/stable)](https://packagist.org/packages/jeremykenedy/laravel-phpinfo)
 [![Total Downloads](https://poser.pugx.org/jeremykenedy/laravel-phpinfo/downloads)](https://packagist.org/packages/jeremykenedy/laravel-phpinfo)
@@ -7,7 +10,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Table of contents:
-- [About](#about)
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation Instructions](#installation-instructions)
@@ -17,11 +19,6 @@ Table of contents:
 - [File Tree](#file-tree)
 - [Opening an Issue](#opening-an-issue)
 - [License](#license)
-
-### About
-Laravel PHP Info is a package that provides a [PHPInfo()](http://php.net/manual/en/function.phpinfo.php) page using blade templating.
-
-The config file can be used to enable/disable auth protection and specify the roles middleware.
 
 | Laravel PHP Info |
 | :------------ |
