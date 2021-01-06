@@ -30,7 +30,7 @@ Table of contents:
 | Uses Language [localization](https://laravel.com/docs/5.5/localization) files |
 
 ### Requirements
-* [Laravel 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 6, and 7+](https://laravel.com/docs/installation)
+* [Laravel 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 6, 7 and 8+](https://laravel.com/docs/installation)
 
 ### Installation Instructions
 1. From your projects root folder in terminal run:
@@ -132,7 +132,7 @@ LaravelPhpInfo
 
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:
-* A **star** on this project shows support and is way to say thank you to all the contributors. If you open an issue without a star, *your issue may be closed without consideration.* Thank you for understanding and the support. You are all awesome!
+* You are all awesome!
 * **Read the instructions** and make sure all steps were *followed correctly*.
 * **Check** that the issue is not *specific to your development environment* setup.
 * **Provide** *duplication steps*.
