@@ -1,0 +1,11 @@
+{
+    "preset": "laravel",
+    "exclude": ["vendor", "node_modules"],
+    "rules": {
+        "array_syntax": {"syntax": "short"},
+        "list_syntax": {"syntax": "long"},
+        "visibility_required": {"elements": ["method", "property"]},
+        "nullable_type_declaration_for_default_null_value": false,
+        "modernize_types_casting": false
+    }
+}

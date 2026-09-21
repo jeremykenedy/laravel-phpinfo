@@ -9,26 +9,36 @@ return [
     */
 
     // The parent blade file
-    'laravelPhpInfoBladeExtended'   => 'layouts.app',
+    'laravelPhpInfoBladeExtended' => 'layouts.app',
 
     // Enable `auth` middleware
-    'authEnabled'                   => true,
+    'authEnabled' => true,
 
     // Enable Optional Roles Middleware
-    'rolesEnabled'                  => false,
+    'rolesEnabled' => false,
 
     // Optional Roles Middleware
-    'rolesMiddlware'                => 'role:admin',
+    'rolesMiddlware' => 'role:admin',
 
     // Switch Between bootstrap 3 `panel` and bootstrap 4 `card` classes
-    'bootstapVersion'               => '4',
+    'bootstapVersion' => '4',
 
     // Additional Card classes for styling -
     // See: https://getbootstrap.com/docs/4.0/components/card/#background-and-color
     // Example classes: 'text-white bg-primary mb-3'
-    'bootstrapCardClasses'          => '',
+    'bootstrapCardClasses' => '',
 
-    // Inline CSS
-    'usePHPinfoCSS'                 => true,
+    // Load the package stylesheet.
+    'usePHPinfoCSS' => true,
+
+    // Null keeps the existing bootstapVersion setting in control.
+    // Options: bootstrap3, bootstrap4, bootstrap5, tailwind.
+    'cssFramework' => null,
+
+    // Use the application layout, or the package's standalone page.
+    'view' => 'app',
+
+    // Default color scheme: system, light, or dark.
+    'theme' => 'system',
 
 ];

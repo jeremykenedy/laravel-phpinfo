@@ -1,130 +1,54 @@
-@extends(config('laravelPhpInfo.laravelPhpInfoBladeExtended'))
+@extends($phpInfoLayout)
 
 @section('title')
-    {!! trans('laravelPhpInfo::laravel-phpinfo.title') !!}
+    {{ trans('laravelPhpInfo::laravel-phpinfo.title') }}
 @endsection
 
-@php
-    switch (config('laravelPhpInfo.bootstapVersion')) {
-        case '4':
-            $containerClass = 'card';
-            $containerHeaderClass = 'card-header';
-            $containerBodyClass = 'card-body';
-            break;
-        case '3':
-        default:
-            $containerClass = 'panel panel-default';
-            $containerHeaderClass = 'panel-heading';
-            $containerBodyClass = 'panel-body';
-    }
-    $bootstrapCardClasses = (is_null(config('laravelPhpInfo.bootstrapCardClasses')) ? '' : config('laravelPhpInfo.bootstrapCardClasses'));
-@endphp
-
-
-@if(config('laravelPhpInfo.usePHPinfoCSS'))
-    <style type="text/css" media="screen">
-        .php-info pre {
-            margin: 0;
-            font-family: monospace;
-        }
-        .php-info a:link {
-            color: #009;
-            text-decoration: none;
-            background-color: #ffffff;
-        }
-        .php-info a:hover {
-            text-decoration: underline;
-        }
-        .php-info table {
-            border-collapse: collapse;
-            border: 0;
-            width: 100%;
-            box-shadow: 1px 2px 3px #ccc;
-        }
-        .php-info .center {
-            text-align: center;
-        }
-        .php-info .center table {
-            margin: 1em auto;
-            text-align: left;
-        }
-        .php-info .center th {
-            text-align: center !important;
-        }
-        .php-info td {
-            border: 1px solid #666;
-            font-size: 75%;
-            vertical-align: baseline;
-            padding: 4px 5px;
-        }
-        .php-info th {
-            border: 1px solid #666;
-            font-size: 75%;
-            vertical-align: baseline;
-            padding: 4px 5px;
-        }
-        .php-info h1 {
-            font-size: 150%;
-        }
-        .php-info h2 {
-            font-size: 125%;
-        }
-        .php-info .p {
-            text-align: left;
-        }
-        .php-info .e {
-            background-color: #ccf;
-            width: 50px;
-            font-weight: bold;
-        }
-        .php-info .h {
-            background-color: #99c;
-            font-weight: bold;
-        }
-        .php-info .v {
-            background-color: #ddd;
-            max-width: 50px;
-            overflow-x: auto;
-            word-wrap: break-word;
-        }
-        .php-info .v i {
-            color: #999;
-        }
-        .php-info img {
-            float: right;
-            border: 0;
-        }
-        .php-info hr {
-            width: 100%;
-            background-color: #ccc;
-            border: 0;
-            height: 1px;
-        }
-    </style>
-@endif
-
-
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="{{ $containerClass }} {{ $bootstrapCardClasses }}">
-                    <div class="{{ $containerHeaderClass }}">
-                        {!! trans('laravelPhpInfo::laravel-phpinfo.title') !!}
-                    </div>
-                    <div class="{{ $containerBodyClass }}">
-                        <div class="php-info">
-                            @php
-                                ob_start();
-                                phpinfo();
-                                $pinfo = ob_get_contents();
-                                ob_end_clean();
-                                $pinfo = preg_replace( '%^.*<body>(.*)</body>.*$%ms','$1',$pinfo);
-                                echo $pinfo;
-                            @endphp
+    @if(config('laravelPhpInfo.usePHPinfoCSS'))
+        <link rel="stylesheet" href="{{ route('laravelPhpInfo::asset', ['file' => 'php-info.css', 'v' => $phpInfoAssetVersion]) }}">
+    @endif
+    <script src="{{ route('laravelPhpInfo::asset', ['file' => 'php-info.js', 'v' => $phpInfoAssetVersion]) }}" defer></script>
+
+    <div class="phpinfo-page {{ $phpInfoClasses['container'] }}" data-phpinfo data-theme="{{ $phpInfoTheme }}">
+        <div class="{{ $phpInfoClasses['row'] }}">
+            <div class="{{ $phpInfoClasses['column'] }}">
+                <section class="phpinfo-card {{ $phpInfoClasses['card'] }} {{ config('laravelPhpInfo.bootstrapCardClasses') }}" aria-labelledby="phpinfo-title">
+                    <header class="phpinfo-header {{ $phpInfoClasses['header'] }}">
+                        <div>
+                            <p class="phpinfo-eyebrow">{{ trans('laravelPhpInfo::laravel-phpinfo.runtime') }}</p>
+                            <h1 id="phpinfo-title">{{ trans('laravelPhpInfo::laravel-phpinfo.title') }}</h1>
+                            <p class="phpinfo-description">{{ trans('laravelPhpInfo::laravel-phpinfo.description') }}</p>
+                        </div>
+                        <span class="phpinfo-version">PHP {{ PHP_VERSION }}</span>
+                    </header>
+                    <div class="{{ $phpInfoClasses['body'] }}">
+                        <div class="phpinfo-toolbar" data-phpinfo-controls hidden>
+                            <div class="phpinfo-search">
+                                <label for="phpinfo-search">{{ trans('laravelPhpInfo::laravel-phpinfo.search') }}</label>
+                                <input id="phpinfo-search" type="search" data-phpinfo-search placeholder="{{ trans('laravelPhpInfo::laravel-phpinfo.search_placeholder') }}" aria-controls="phpinfo-output" autocomplete="off">
+                            </div>
+                            <div class="phpinfo-theme">
+                                <label for="phpinfo-theme">{{ trans('laravelPhpInfo::laravel-phpinfo.theme') }}</label>
+                                <select id="phpinfo-theme" data-phpinfo-theme>
+                                    <option value="system">{{ trans('laravelPhpInfo::laravel-phpinfo.system') }}</option>
+                                    <option value="light">{{ trans('laravelPhpInfo::laravel-phpinfo.light') }}</option>
+                                    <option value="dark">{{ trans('laravelPhpInfo::laravel-phpinfo.dark') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p class="phpinfo-empty" data-phpinfo-empty role="status" hidden>{{ trans('laravelPhpInfo::laravel-phpinfo.no_results') }}</p>
+                        <div id="phpinfo-output" class="php-info" tabindex="0" role="region" aria-label="{{ trans('laravelPhpInfo::laravel-phpinfo.title') }}">
+                            @if(! $phpInfo['available'])
+                                <p role="status">{{ trans('laravelPhpInfo::laravel-phpinfo.unavailable') }}</p>
+                            @elseif($phpInfo['html'])
+                                {!! $phpInfo['output'] !!}
+                            @else
+                                <pre>{{ $phpInfo['output'] }}</pre>
+                            @endif
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     </div>

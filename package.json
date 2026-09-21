@@ -1,0 +1,13 @@
+{
+    "name": "laravel-phpinfo-tests",
+    "private": true,
+    "scripts": {
+        "test": "playwright test",
+        "lint": "node --check src/resources/assets/js/php-info.js && node scripts/build-assets.js --check",
+        "build": "node scripts/build-assets.js"
+    },
+    "devDependencies": {
+        "@axe-core/playwright": "4.13.0",
+        "@playwright/test": "1.63.0"
+    }
+}

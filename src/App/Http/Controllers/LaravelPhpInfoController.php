@@ -1,44 +1,26 @@
 <?php
 
-namespace jeremykenedy\laravelPhpInfo\App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
+namespace jeremykenedy\LaravelPhpInfo\App\Http\Controllers;
 
 class LaravelPhpInfoController extends Controller
 {
-    private $_authEnabled;
-    private $_rolesEnabled;
-    private $_rolesMiddlware;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('web');
 
-        $this->_authEnabled = config('laravelPhpInfo.authEnabled');
-        $this->_rolesEnabled = config('laravelPhpInfo.rolesEnabled');
-        $this->_rolesMiddlware = config('laravelPhpInfo.rolesMiddlware');
-
-        if ($this->_authEnabled) {
+        if (config('laravelPhpInfo.authEnabled')) {
             $this->middleware('auth');
         }
 
-        if ($this->_rolesEnabled) {
-            $this->middleware($this->_rolesMiddlware);
+        if (config('laravelPhpInfo.rolesEnabled')) {
+            $this->middleware(config('laravelPhpInfo.rolesMiddlware'));
         }
     }
 
-    /**
-     * Display php info page.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function phpinfo()
     {
-        return View('laravelPhpInfo::phpinfo.php-info');
+        return response()->view('laravelPhpInfo::phpinfo.php-info', [], 200, [
+            'Cache-Control' => 'no-store, private',
+        ]);
     }
 }
