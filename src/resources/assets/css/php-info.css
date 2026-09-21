@@ -86,6 +86,16 @@
     box-sizing: border-box;
 }
 
+.phpinfo-page > .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.phpinfo-page > .row > .col-md-12 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .phpinfo-page [hidden] {
     display: none !important;
 }

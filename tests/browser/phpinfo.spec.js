@@ -1,11 +1,21 @@
 const { test, expect } = require('@playwright/test');
 const AxeBuilder = require('@axe-core/playwright').default;
+const fs = require('node:fs');
+const path = require('node:path');
+
+async function loadFramework(page, framework) {
+    const file = framework === 'tailwind'
+        ? path.join(__dirname, 'tailwind.generated.css')
+        : require.resolve(`${framework}/dist/css/bootstrap.min.css`);
+    await page.addStyleTag({ content: fs.readFileSync(file, 'utf8') });
+}
 
 for (const css of ['bootstrap3', 'bootstrap4', 'bootstrap5', 'tailwind']) {
     test(`${css} renders and filters settings`, async ({ page }) => {
         const errors = [];
         page.on('pageerror', error => errors.push(error.message));
         await page.goto(`/phpinfo?css=${css}`);
+        await loadFramework(page, css);
         await expect(page.getByRole('heading', { name: 'PHP Information', exact: true })).toBeVisible();
         await expect(page.getByLabel('Filter settings')).toBeVisible();
         await page.getByLabel('Filter settings').fill('memory_limit');
@@ -54,15 +64,18 @@ test('blocked storage does not break search or theme controls', async ({ page })
     await expect(page.locator('.phpinfo-card')).toHaveCSS('background-color', 'rgb(21, 27, 39)');
 });
 
-for (const theme of ['light', 'dark']) {
-    test(`${theme} mode is usable on mobile and passes accessibility checks`, async ({ page }) => {
-        await page.setViewportSize({ width: 375, height: 812 });
-        await page.goto('/phpinfo?css=tailwind');
-        await page.getByLabel('Appearance').selectOption(theme);
-        expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-        const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
-        expect(results.violations).toEqual([]);
-    });
+for (const framework of ['bootstrap3', 'bootstrap4', 'bootstrap5', 'tailwind']) {
+    for (const theme of ['light', 'dark']) {
+        test(`${framework} ${theme} mode is usable on mobile and passes accessibility checks`, async ({ page }) => {
+            await page.setViewportSize({ width: 375, height: 812 });
+            await page.goto(`/phpinfo?css=${framework}`);
+            await loadFramework(page, framework);
+            await page.getByLabel('Appearance').selectOption(theme);
+            expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+            const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+            expect(results.violations).toEqual([]);
+        });
+    }
 }
 
 test('information remains readable without JavaScript', async ({ browser }) => {

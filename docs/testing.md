@@ -44,6 +44,8 @@ npm test
 
 Playwright starts a local PHP server on `127.0.0.1:18763`. Most tests use a fixed PHP Info fixture so screenshots and failures do not contain local environment data. A separate smoke test checks real web-server `phpinfo()` output.
 
-Browser coverage includes Bootstrap 3, 4, and 5, Tailwind, extension and directive search, theme persistence, host theme integration, blocked browser storage, JavaScript disabled, mobile overflow, and WCAG accessibility checks in light and dark mode.
+Browser coverage includes Bootstrap 3, 4, and 5, Tailwind, extension and directive search, theme persistence, host theme integration, blocked browser storage, JavaScript disabled, mobile overflow, and WCAG accessibility checks in light and dark mode. Each framework is tested with its real stylesheet loaded. The test command compiles Tailwind's utilities from the package source before starting the browser.
+
+Node 20 or newer is needed for browser-test tooling. Bootstrap 3.4.1 is a development-only dependency used to test its CSS. npm reports historical advisories for that version's JavaScript plugins; those plugins are never loaded by the tests or the package. Applications installing this package through Composer do not acquire these npm test dependencies.
 
 The browser fixture disables authentication only inside the local test application. It is not an application entry point and must not be deployed as one.

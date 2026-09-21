@@ -34,3 +34,4 @@ vendor/
 /test-results
 /playwright-report
 /.env
+/tests/browser/tailwind.generated.css
