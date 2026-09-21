@@ -53,7 +53,7 @@ jobs:
         env:
           COMPOSER_NO_SECURITY_BLOCKING: ${{ matrix.legacy && '1' || '0' }}
         run: composer update --prefer-dist --no-interaction --no-progress --no-plugins
-      - run: composer test
+      - run: composer --no-plugins test
       - name: Audit supported framework dependencies
         if: ${{ !matrix.legacy }}
         run: composer audit
