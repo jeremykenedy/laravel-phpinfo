@@ -2,62 +2,47 @@
 
 namespace jeremykenedy\LaravelPhpInfo;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelPhpInfoServiceProvider extends ServiceProvider
 {
-    private $_packageTag = 'laravelPhpInfo';
-
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot(Router $router)
-    {
-        $this->loadTranslationsFrom(__DIR__.'/resources/lang/', $this->_packageTag);
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
     public function register()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/resources/views/', $this->_packageTag);
-        $this->mergeConfigFrom(__DIR__.'/config/'.$this->_packageTag.'.php', $this->_packageTag);
-        $this->publishFiles();
+        $this->mergeConfigFrom(__DIR__.'/config/laravelPhpInfo.php', 'laravelPhpInfo');
     }
 
-    /**
-     * Publish files for Laravel PHP Info.
-     *
-     * @return void
-     */
+    public function boot()
+    {
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'laravelPhpInfo');
+        $this->loadTranslationsFrom(__DIR__.'/resources/lang', 'laravelPhpInfo');
+        $this->app['view']->composer('laravelPhpInfo::phpinfo.php-info', 'jeremykenedy\\LaravelPhpInfo\\View\\PhpInfoComposer');
+
+        if ($this->app->runningInConsole()) {
+            $this->publishFiles();
+            $this->commands([
+                'jeremykenedy\\LaravelPhpInfo\\Console\\InstallCommand',
+                'jeremykenedy\\LaravelPhpInfo\\Console\\UpdateCommand',
+                'jeremykenedy\\LaravelPhpInfo\\Console\\SwitchCommand',
+            ]);
+        }
+    }
+
     private function publishFiles()
     {
-        $publishTag = $this->_packageTag;
+        $languagePath = method_exists($this->app, 'langPath')
+            ? $this->app->langPath()
+            : $this->app->resourcePath().'/lang';
 
-        $this->publishes([
-            __DIR__.'/config/'.$this->_packageTag.'.php' => base_path('config/'.$this->_packageTag.'.php'),
-        ], $publishTag);
+        $paths = [
+            'config' => [__DIR__.'/config/laravelPhpInfo.php' => $this->app->configPath().'/laravelPhpInfo.php'],
+            'views' => [__DIR__.'/resources/views' => $this->app->resourcePath().'/views/vendor/laravelPhpInfo'],
+            'lang' => [__DIR__.'/resources/lang' => $languagePath.'/vendor/laravelPhpInfo'],
+        ];
 
-        $this->publishes([
-            __DIR__.'/resources/views' => base_path('resources/views/vendor/'.$this->_packageTag),
-        ], $publishTag);
-
-        $this->publishes([
-            __DIR__.'/resources/lang' => base_path('resources/lang/vendor/'.$this->_packageTag),
-        ], $publishTag);
+        foreach ($paths as $tag => $files) {
+            $this->publishes($files, 'laravelPhpInfo');
+            $this->publishes($files, 'laravelPhpInfo-'.$tag);
+        }
     }
 }

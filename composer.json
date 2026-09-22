@@ -7,6 +7,7 @@
             "Laravel phpinfo"
         ],
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Jeremy Kenedy",
@@ -16,10 +17,29 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^10.0 || ^11.0",
+        "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0"
+    },
+    "suggest": {
+        "jeremykenedy/laravel-ui-kit": "Optional host application UI setup with the --ui-kit command option."
+    },
     "autoload": {
         "psr-4": {
             "jeremykenedy\\LaravelPhpInfo\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "jeremykenedy\\LaravelPhpInfo\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "@php vendor/bin/phpunit",
+        "lint": "@php vendor/bin/pint",
+        "lint:test": "@php vendor/bin/pint --test",
+        "check": ["@lint:test", "@test"]
     },
     "extra": {
         "laravel": {

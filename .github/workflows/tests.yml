@@ -1,0 +1,93 @@
+name: Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Laravel ${{ matrix.laravel }} / PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { laravel: '5.3', php: '5.6', testbench: '3.3.*', phpunit: '^5.7', composer: 'v2.2', legacy: true }
+          - { laravel: '5.4', php: '5.6', testbench: '3.4.*', phpunit: '^5.7', composer: 'v2.2', legacy: true }
+          - { laravel: '5.5', php: '7.0', testbench: '3.5.*', phpunit: '^6.5', composer: 'v2.2', legacy: true }
+          - { laravel: '5.6', php: '7.1', testbench: '3.6.*', phpunit: '^7.5', composer: 'v2.2', legacy: true }
+          - { laravel: '5.7', php: '7.1', testbench: '3.7.*', phpunit: '^7.5', composer: 'v2.2', legacy: true }
+          - { laravel: '5.8', php: '7.2', testbench: '3.8.*', phpunit: '^7.5', composer: 'v2.2', legacy: true }
+          - { laravel: '6', php: '7.2', testbench: '^4.0', phpunit: '^8.5', composer: 'v2.2', legacy: true }
+          - { laravel: '7', php: '7.3', testbench: '^5.0', phpunit: '^9.6', composer: 'v2', legacy: true }
+          - { laravel: '8', php: '7.4', testbench: '^6.0', phpunit: '^9.6', composer: 'v2', legacy: true }
+          - { laravel: '9', php: '8.0', testbench: '^7.0', phpunit: '^9.6', composer: 'v2', legacy: true }
+          - { laravel: '10', php: '8.1', testbench: '^8.0', phpunit: '^10.5', composer: 'v2', legacy: true }
+          - { laravel: '11', php: '8.2', testbench: '^9.0', phpunit: '^11.5', composer: 'v2', legacy: true }
+          - { laravel: '12', php: '8.2', testbench: '^10.0', phpunit: '^11.5', composer: 'v2', legacy: false }
+          - { laravel: '12', php: '8.5', testbench: '^10.0', phpunit: '^11.5', composer: 'v2', legacy: false }
+          - { laravel: '13', php: '8.3', testbench: '^11.0', phpunit: '^12.0', composer: 'v2', legacy: false }
+          - { laravel: '13', php: '8.4', testbench: '^11.0', phpunit: '^13.0', composer: 'v2', legacy: false }
+          - { laravel: '13', php: '8.5', testbench: '^11.0', phpunit: '^13.0', composer: 'v2', legacy: false }
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, dom, fileinfo, pdo_sqlite
+          coverage: none
+          tools: composer:${{ matrix.composer }}
+      - name: Select test dependencies
+        run: |
+          composer remove --dev laravel/pint --no-update --no-interaction
+          composer require --dev --no-update --no-interaction "orchestra/testbench:${{ matrix.testbench }}" "phpunit/phpunit:${{ matrix.phpunit }}" "mockery/mockery:^1.0"
+      - name: Install test dependencies
+        env:
+          COMPOSER_NO_SECURITY_BLOCKING: ${{ matrix.legacy && '1' || '0' }}
+        run: composer update --prefer-dist --no-interaction --no-progress --no-plugins
+      - run: composer --no-plugins test
+      - name: Audit supported framework dependencies
+        if: ${{ !matrix.legacy }}
+        run: composer audit
+
+  quality:
+    name: Code style and browser tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45
+        with:
+          php-version: '8.5'
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24'
+          cache: npm
+      - run: composer validate --strict
+      - run: composer update --prefer-dist --no-interaction --no-progress
+      - run: composer lint:test
+      - run: npm ci --ignore-scripts
+      - run: npm run lint
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+
+  syntax:
+    name: PHP 5.4 syntax compatibility
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45
+        with:
+          php-version: '5.4'
+          coverage: none
+      - run: find src -name '*.php' ! -name '*.blade.php' -print0 | xargs -0 -n1 php -l

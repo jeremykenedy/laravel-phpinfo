@@ -1,0 +1,19 @@
+{
+    "name": "laravel-phpinfo-tests",
+    "private": true,
+    "scripts": {
+        "test": "npm run test:css && playwright test",
+        "lint": "node --check src/resources/assets/js/php-info.js && node scripts/build-assets.js --check",
+        "build": "node scripts/build-assets.js",
+        "test:css": "tailwindcss -i tests/browser/tailwind.css -o tests/browser/tailwind.generated.css --minify"
+    },
+    "devDependencies": {
+        "@axe-core/playwright": "4.13.0",
+        "@playwright/test": "1.63.0",
+        "@tailwindcss/cli": "4.3.3",
+        "bootstrap3": "npm:bootstrap@3.4.1",
+        "bootstrap4": "npm:bootstrap@4.6.2",
+        "bootstrap5": "npm:bootstrap@5.3.8",
+        "tailwindcss": "4.3.3"
+    }
+}

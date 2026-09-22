@@ -1,0 +1,9 @@
+preset: laravel
+enabled:
+  - long_list_syntax
+disabled:
+  - short_list_syntax
+finder:
+  exclude:
+    - vendor
+    - node_modules
