@@ -9,9 +9,6 @@
 <p align="center">PHP configuration, extensions, and runtime details in an authenticated Laravel page.</p>
 
 <p align="center">
-    
-    
-    
     <a href="https://packagist.org/packages/jeremykenedy/laravel-phpinfo"><img src="https://poser.pugx.org/jeremykenedy/laravel-phpinfo/d/total.svg" alt="Total Downloads"></a>
     <a href="https://packagist.org/packages/jeremykenedy/laravel-phpinfo"><img src="https://poser.pugx.org/jeremykenedy/laravel-phpinfo/v/stable.svg" alt="Latest Stable Version"></a>
     <a href="https://github.com/jeremykenedy/laravel-phpinfo/actions/workflows/tests.yml"><img src="https://github.com/jeremykenedy/laravel-phpinfo/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
